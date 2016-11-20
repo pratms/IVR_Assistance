@@ -42,7 +42,7 @@ if (req.body.search)
 
 
 client.calls.create({
-    url: 'https://voiceresponse.herokuapp.com/voice',
+    url: 'http://' + request.headers.host + '/voice',
     to: num,
     from: "+16466528019 "
 }, function(err, call) {
@@ -70,6 +70,18 @@ app.get('/posts', function(req, res)
 app.get('/', function(req, res) {
     var twilio = require('twilio');
     var twiml = new twilio.TwimlResponse();
+
+exports.voice = function(request, response) {
+    var twiml = new twilio.TwimlResponse();
+ 
+    twiml.say('Hi there! Thanks for calling to wish Joe good luck this season. Please leave your message after the beep - you can end the message by pressing any button. Get ready!')
+        .record({
+            maxLength:120,
+            action:'/recording'
+        });
+ 
+    response.send(twiml);
+};
        if (req.body.Body == 'Help') {
       twiml.say("Hello from pratik Twilio! Have fun.");
      }
