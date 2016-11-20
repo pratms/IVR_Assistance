@@ -40,19 +40,13 @@ if (req.body.search)
 {
   var num = req.body.search;
 
-var promise = client.makeCall({
-    to:num, // a number to call
-    from:'+16466528019', // a Twilio number you own
-    url:'https://demo.twilio.com/welcome/voice' // A URL containing TwiML instructions for the call
-});
 
-// You can assign functions to be called, at any time, after the request to
-// Twilio has been completed.  The first function is called when the request
-// succeeds, the second if there was an error.
-promise.then(function(call) {
-    console.log('Call success! Call SID: '+call.sid);
-}, function(error) {
-    console.error('Call failed!  Reason: '+error.message);
+client.calls.create({
+    url: 'https://voiceresponse.herokuapp.com/voice',
+    to: num,
+    from: "+16466528019 "
+}, function(err, call) {
+    process.stdout.write(call.sid);
 });
 
 };
