@@ -1,0 +1,9 @@
+<Response>
+<Say>
+Welcome to Twilio. Congratulations, you have successfully configured your development environment.
+</Say>
+<Play>/sounds/clapping.wav</Play>
+<Say>
+Have a fun time with your development! Goodbye for now.
+</Say>
+</Response>
