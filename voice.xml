@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Say voice="woman">Hello from pratik, have a good one</Say>
-    
+<Say>
+Welcome to Twilio. Congratulations, you have successfully configured your development environment.
+</Say>
+<Play>/sounds/clapping.wav</Play>
+<Say>
+Have a fun time with your development! Goodbye for now.
+</Say>
 </Response>
