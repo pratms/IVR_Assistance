@@ -15,9 +15,10 @@ app.post('/voice', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
   let twiml = new twilio.TwimlResponse();
   twiml.gather({ 
+    finishOnKey:'*',
     numDigits: 5,
-    action: '/gather',
-    finishOnKey="*"
+    action: '/gather'
+    
   }, (gatherNode) => {
     gatherNode.say(' Please enter your 5 digit ID and then press star.');
   });
