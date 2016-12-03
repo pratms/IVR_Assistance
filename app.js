@@ -136,7 +136,7 @@ exports.voice = function(request, response) {
 });
 app.post('/voice', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
-  var twiml= new twilio.TwimlResponse();
+  let twiml = new twilio.TwimlResponse();
 
   twiml.gather({ 
     numDigits: 1,
@@ -156,7 +156,7 @@ app.post('/voice', (request, response) => {
 // Create a route that will handle <Gather> input
 app.post('/gather', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
-  var twiml = new twilio.TwimlResponse();
+  let twiml = new twilio.TwimlResponse();
 
   // If the user entered digits, process their request
   if (request.body.Digits) {
@@ -178,19 +178,19 @@ app.post('/gather', (request, response) => {
   response.send(twiml.toString());
 });
 
-// app.post('/', function(req, res) {
-//     var twilio = require('twilio');
-//     var twiml = new twilio.TwimlResponse();
-//     twiml.say("Hello from pratik Twilio! Have fun.");
+app.post('/voice', function(req, res) {
+    var twilio = require('twilio');
+    var twiml = new twilio.TwimlResponse();
+    twiml.say("Hello from pratik Twilio! Have fun.");
 
 
 
 
         
  
-//     res.writeHead(200, {'Content-Type': 'text/xml'});
-//     res.end(twiml.toString());
-// });
+    res.writeHead(200, {'Content-Type': 'text/xml'});
+    res.end(twiml.toString());
+});
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -220,4 +220,5 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
 
