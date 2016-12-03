@@ -135,7 +135,7 @@ exports.voice = function(request, response) {
     res.end(twiml.toString());
 });
 
-app.post('/', function(req, res) {
+app.post('/voice', function(req, res) {
     var twilio = require('twilio');
     var twiml = new twilio.TwimlResponse();
     twiml.say("Hello from pratik Twilio! Have fun.");
