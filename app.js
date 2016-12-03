@@ -138,7 +138,7 @@ exports.voice = function(request, response) {
 app.post('/voice', function(req, res) {
     var twilio = require('twilio');
     var twiml = new twilio.TwimlResponse();
-   function gather() {
+  function gather() {
     twiml.gather({ numDigits: 1 }, (gatherNode) => {
       gatherNode.say('For sales, press 1. For support, press 2.');
     });
@@ -162,8 +162,9 @@ app.post('/voice', function(req, res) {
     gather();
   }
 
-    res.writeHead(200, {'Content-Type': 'text/xml'});
-    res.end(twiml.toString());
+  // Render the response as XML in reply to the webhook request
+  response.type('text/xml');
+  response.send(twiml.toString());
 });
 
 app.use(function(req, res, next) {
