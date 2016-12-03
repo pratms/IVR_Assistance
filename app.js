@@ -138,16 +138,30 @@ exports.voice = function(request, response) {
 app.post('/voice', function(req, res) {
     var twilio = require('twilio');
     var twiml = new twilio.TwimlResponse();
+   function gather() {
     twiml.gather({ numDigits: 1 }, (gatherNode) => {
-    gatherNode.say('For sales, press 1. For support, press 2.');
-      });
-//     twiml.say("Hello from pratik Twilio! Have fun.");
-
-
-
-
-        
+      gatherNode.say('For sales, press 1. For support, press 2.');
+    });
+    
+    // If the user doesn't enter input, loop
     twiml.redirect('/voice');
+  }
+
+  // If the user entered digits, process their request
+  if (request.body.Digits) {
+    switch (request.body.Digits) {
+      case '1': twiml.say('You selected sales. Good for you!'); break;
+      case '2': twiml.say('You need support. We will help!'); break;
+      default: 
+        twiml.say('Sorry, I don\'t understand that choice.').pause();
+        gather();
+        break;
+    }
+  } else {
+    // If no input was sent, use the <Gather> verb to collect user input 
+    gather();
+  }
+
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
 });
