@@ -138,13 +138,16 @@ exports.voice = function(request, response) {
 app.post('/voice', function(req, res) {
     var twilio = require('twilio');
     var twiml = new twilio.TwimlResponse();
-    twiml.say("Hello from pratik Twilio! Have fun.");
+    twiml.gather({ numDigits: 1 }, (gatherNode) => {
+    gatherNode.say('For sales, press 1. For support, press 2.');
+      });
+//     twiml.say("Hello from pratik Twilio! Have fun.");
 
 
 
 
         
- 
+    twiml.redirect('/voice');
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
 });
