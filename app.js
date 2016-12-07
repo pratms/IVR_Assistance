@@ -39,8 +39,8 @@ app.post('/gather', (request, response) => {
   // If the user entered digits, process their request
   if (request.body.Digits) {
     switch (request.body.Digits) {
-      case '11111': twiml.say('You selected sales. Good for you!'); break;
-      case '22222': twiml.say('You need support. We will help!'); break;
+      case '11111': twiml.say('wellcome to help desk!'); break;
+      case '22222': twiml.say('wellcome to help desk!'); break;
       default: 
         twiml.say('Sorry, I don\'t understand that choice.').pause();
         twiml.redirect('/voice');
