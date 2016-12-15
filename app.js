@@ -35,22 +35,24 @@ app.post('/voice', (request, response) =>
 // Create a route that will handle <Gather> input
 app.post('/gather', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
-   let twiml = new twilio.TwimlResponse();
-   if (request.body.Digits) {
-   db.users.findOne({userid: request.body.Digits},function(err, data) 
+  let twiml = new twilio.TwimlResponse();
+
+  // If the user entered digits, process their request
+  if (request.body.Digits) {
+    db.users.find({userid: request.body.Digits}, function(err, data) 
   {
-    if (data) {
+    if (data) 
+    {
     twiml.say('wellcome %s to help desk', data.name); 
     }
-   else{
+   else
+   {
         twiml.say('Sorry, invalid userid').pause();
         twiml.redirect('/voice');
 
     }
      
    });
-
-  
     // switch (request.body.Digits) {
     //   case '11111': twiml.say('wellcome help desk'); break;
     //   case '22222': twiml.say('wellcome to help desk!'); break;
@@ -61,7 +63,6 @@ app.post('/gather', (request, response) => {
     // }
   } else {
     // If no input was sent, redirect to the /voice route
-
     twiml.redirect('/voice');
   }
 
@@ -73,12 +74,6 @@ app.post('/gather', (request, response) => {
 app.listen(3000);
 
 module.exports = app;
-
-
-
-
-
-
 
 
 
