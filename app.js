@@ -6,7 +6,7 @@ const urlencoded = require('body-parser').urlencoded;
 const mongodb = require('mongodb');
 const mongojs = require('mongojs');
 let app = express();
-var db = mongojs('mongodb://pratik:pratik@ds133438.mlab.com:33438/heroku_9rvcpdq9', ['users']);
+let db = mongojs('mongodb://pratik:pratik@ds133438.mlab.com:33438/heroku_9rvcpdq9', ['users']);
 
 app.use(urlencoded({ extended: false }));
 
