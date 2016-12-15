@@ -39,7 +39,7 @@ app.post('/gather', (request, response) => {
 
   // If the user entered digits, process their request
   if (request.body.Digits) {
-    db.users.find({userid: request.body.Digits}, function(err, data) 
+    db.users.find({"userid": request.body.Digits}, function(err, data) 
   {
     if (data) 
     {
