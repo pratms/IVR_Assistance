@@ -6,7 +6,7 @@ const urlencoded = require('body-parser').urlencoded;
 const mongodb = require('mongodb');
 const mongojs = require('mongojs');
 let app = express();
-let db = mongojs('mongodb://pratik:pratik@ds133438.mlab.com:33438/heroku_9rvcpdq9', ['users']);
+
 
 app.use(urlencoded({ extended: false }));
 
@@ -53,14 +53,7 @@ app.post('/gather', (request, response) => {
     }
      
    });
-    // switch (request.body.Digits) {
-    //   case '11111': twiml.say('wellcome help desk'); break;
-    //   case '22222': twiml.say('wellcome to help desk!'); break;
-    //   default: 
-    //     twiml.say('Sorry, I don\'t understand that choice.').pause();
-    //     twiml.redirect('/voice');
-    //     break;
-    // }
+
   } else {
     // If no input was sent, redirect to the /voice route
     twiml.redirect('/voice');
